@@ -18,18 +18,20 @@ export const CartContext = ({ children }) => {
   }
 
   const agregar = async details => {
+    if(count !== 0){
     const docRef = doc(db, 'home', details)
      await getDoc(docRef).then( doc =>{
-      const noteAdapted = {id: doc.id, ...doc.data()}
+      const noteAdapted = {id: doc.id, ...doc.data}
+      
       console.log(noteAdapted)
-      if(count !== 0){
       setAdd(count + add)
       setCount(0)
-      setNote([...note, noteAdapted])
+      setNote([noteAdapted, ...note])
       setNewPrice(noteAdapted.price * count)
    }
-    }) 
+    ) 
    }
+  }
 
   const handleDelete = (id) => {
     let temp = note.filter(item => item.id !== id)

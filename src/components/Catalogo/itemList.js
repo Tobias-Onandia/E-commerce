@@ -25,16 +25,14 @@ const ItemList = ()=>{
     })
     .catch(err => console.log(err))
     .finally(() => {setIsloading(false)})}  
-   
-   
     else{
       const docRef = doc(db,"home", categoryId)
       getDoc(docRef).then(doc => {
+        console.log(doc)
         const data = doc.data()
         const noteAdapted = {id: doc.id, ...data}
         setProduct(<Item key={noteAdapted.id} description={noteAdapted.id} title={noteAdapted.id} url={noteAdapted.id} />)
       })
-      
       .catch(err => console.log(err))
       .finally(()=> setIsloading(false))
     }},[categoryId])

@@ -4,8 +4,8 @@ import CartWidget from "./cartWidget";
 import { Link } from "react-router-dom";
 
 
-const NavBar = () => {
 
+const NavBar = () => {
 
   return(
     <div className="navbar bg-base-100 flex justify-between ">
