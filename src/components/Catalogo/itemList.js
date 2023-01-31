@@ -31,7 +31,6 @@ const ItemList = ()=>{
       .then(doc => {
         const data = doc.data()
         const noteAdapted = {id: doc.id, ...data}
-        console.log(noteAdapted)
         setProduct(<Item key={noteAdapted.id} description={noteAdapted.description} title={noteAdapted.name} url={noteAdapted.url} />)
       })
       .catch(err => console.log(err))

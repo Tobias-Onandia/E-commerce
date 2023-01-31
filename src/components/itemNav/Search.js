@@ -6,8 +6,7 @@ import { getNoteByCategory} from "../notas";
 const Search = () => {
   const [ note , setNote] = useState()
   const navigation = useNavigate()
-  const [isLoading, setIsloading] = useState(true)
-  
+ 
   const handleChange = e => { 
     let value = e.target.value
     setNote(getNoteByCategory(value))
@@ -16,15 +15,12 @@ const Search = () => {
   const handleClick = () => {
     let input = note.category
     navigation(`/category/${input}`)
-    setIsloading(false)
   }
 
   const handleSubmit = e => {
     e.preventDefault()
   }
 
-
-  if (isLoading) return <progress className="progress w-56"></progress>
 
   return(
     <div className="form-control ">
