@@ -1,6 +1,9 @@
+import { Link } from "react-router-dom";
 
 const Profile = () => {
-    return (
+   
+  
+  return (
     <div className="dropdown dropdown-end">
     <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
       <div className="w-10 rounded-full">
@@ -9,12 +12,12 @@ const Profile = () => {
     </label>
     <ul tabIndex={0} className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
       <li>
-        <a href="$"className="justify-between">
+        <Link to="/login">
           Profile
-        </a>
+        </Link>
       </li>
-      <li><a href="$">Settings</a></li>
-      <li><a href="$">Logout</a></li>
+      <li><Link to="/login">Settings</Link></li>
+      <li><Link to="/login">Logout</Link></li>
     </ul>
   </div>
  )

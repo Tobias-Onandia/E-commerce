@@ -4,7 +4,7 @@ import { BuyContext } from "../context/cartContext"
 
 const ItemDetails = () => {
   const {sumar, count, restar, agregar  } = useContext(BuyContext)
-  let { details } = useParams()
+  const { details } = useParams()
  
 
   return(

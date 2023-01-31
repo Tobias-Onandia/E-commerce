@@ -22,7 +22,7 @@ const CartWidget = ()=>{
           <div tabIndex={0} className="mt-3 card card-compact dropdown-content w-52 bg-base-100 shadow">
             <div className="card-body">
               {newPrice !== undefined && add !== 0
-               ? <button className="btn btn-primary btn-block">{`$${5000 * add}`}</button>
+               ? <button className="btn btn-primary btn-block">{`$${newPrice + add}`}</button>
                :  null
               }
               {

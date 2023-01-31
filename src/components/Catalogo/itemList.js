@@ -7,7 +7,7 @@ import { db } from "../firebaseConfig";
 const ItemList = ()=>{
   const [product, setProduct] = useState()
   const [isLoading, setIsloading] = useState(true)
-  let { categoryId } = useParams()
+  const { categoryId } = useParams()
  
   useEffect(() =>{ 
     setIsloading(true)
@@ -15,27 +15,29 @@ const ItemList = ()=>{
       const collectionRef = categoryId
       ? query ( collection(db, 'home'), where('category', '==', categoryId), limit())
       : query (collection(db,"home"), orderBy('name', 'desc'))
-
     getDocs(collectionRef)
       .then(response => { const notesAdapted = response.docs.map(doc => {
         const data = doc.data()
         return {id: doc.id , ...data }
       })
-      setProduct(notesAdapted.map(item => <Item key={item.id} description={item.description} title={item.title} url={item.url}/>))
+      setProduct(notesAdapted.map(item => <Item key={item.id} description={item.description} title={item.name} url={item.url}/>))
     })
     .catch(err => console.log(err))
     .finally(() => {setIsloading(false)})}  
-    else{
-      const docRef = doc(db,"home", categoryId)
-      getDoc(docRef).then(doc => {
-        console.log(doc)
+    else
+    {
+      const docRef = doc(db, 'home', categoryId)
+      getDoc(docRef)
+      .then(doc => {
         const data = doc.data()
         const noteAdapted = {id: doc.id, ...data}
-        setProduct(<Item key={noteAdapted.id} description={noteAdapted.id} title={noteAdapted.id} url={noteAdapted.id} />)
+        console.log(noteAdapted)
+        setProduct(<Item key={noteAdapted.id} description={noteAdapted.description} title={noteAdapted.name} url={noteAdapted.url} />)
       })
       .catch(err => console.log(err))
       .finally(()=> setIsloading(false))
-    }},[categoryId])
+    }
+  },[categoryId])
 
 
   if (isLoading) return <progress className="progress w-56"></progress>

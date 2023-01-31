@@ -4,6 +4,11 @@ module.exports = {
     "./src/**/*.{js,jsx,ts,tsx}",
   ],
   theme: {
+    extend:{
+      height:{
+        '90': '90vh'
+      }
+    },
     container:{
       center: true
     },
@@ -12,8 +17,6 @@ module.exports = {
       md: '12px',
       lg: '16px',
       xl: '24px',
-    },
-    extend: {
     },
   },
   plugins: [

@@ -17,19 +17,18 @@ export const CartContext = ({ children }) => {
     if(count !== 0)setCount(count - 1)
   }
 
-  const agregar = async details => {
+  const agregar =  details => {
     if(count !== 0){
     const docRef = doc(db, 'home', details)
-     await getDoc(docRef).then( doc =>{
-      const noteAdapted = {id: doc.id, ...doc.data}
-      
-      console.log(noteAdapted)
-      setAdd(count + add)
-      setCount(0)
+    getDoc(docRef)
+    .then( doc => {
+      const data = doc.data()
+      const noteAdapted = {id: doc.id, ...data}
       setNote([noteAdapted, ...note])
       setNewPrice(noteAdapted.price * count)
-   }
-    ) 
+    }) 
+    setAdd(count + add)
+    setCount(0)
    }
   }
 
@@ -43,8 +42,6 @@ export const CartContext = ({ children }) => {
     setAdd(0)
     setNote(temp)
   }
-
- 
 
   return(
     <BuyContext.Provider value={{agregar,restar, sumar, add, count, note, handleDelete, handleClear, newPrice}}>
