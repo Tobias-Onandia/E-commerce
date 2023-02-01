@@ -1,6 +1,5 @@
 import { useContext } from "react"
 import { BuyContext } from "../context/cartContext"
-import Checkout from "./Checkout"
 
 
  const Cart = ({ title , description, price, id, handleCreateOrder }) => {
@@ -20,7 +19,6 @@ import Checkout from "./Checkout"
         <div className="card-actions justify-between">
           <button onClick={()=> handleDelete(id)} className="btn btn-primary">Borrar</button>
         </div>
-        <Checkout />
       </div>
       <div>
       </div>

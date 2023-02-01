@@ -2,6 +2,7 @@ import { useContext } from "react"
 import { Link } from "react-router-dom"
 import Cart from "./Cart"
 import { BuyContext } from "../context/cartContext"
+import Checkout from "./Checkout"
 
 
 
@@ -18,11 +19,16 @@ const CartList = () => {
 
   if(newNote.length > 0 ) 
     return( 
+      <>
       <main className="flex flex-wrap justify-between items-start ">
-      {newNote.map(item => <Cart key={item.id}  title={item.id} description={item.description} price={item.price} id={item.id} />)}
+      {newNote.map(item => <Cart key={item.id}  title={item.name} description={item.description} price={item.price} id={item.id} />)}
       <button onClick={()=> handleClear()} className="btn btn-primary mt-xl absolute right-xl">Limpiar</button>
-
-     </main> )
+     </main> 
+     <button className="btn btn-primary absolute bottom-xl right-lg"><Checkout/></button>
+     
+     
+     </>
+     )
 
      return( 
      <main className="flex justify-center align-center m-lg">

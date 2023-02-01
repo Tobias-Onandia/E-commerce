@@ -28,13 +28,13 @@ export const CartContext = ({ children }) => {
       setNewPrice(noteAdapted.price * count)
     }) 
     setAdd(count + add)
-    setCount(0)
    }
   }
 
   const handleDelete = (id) => {
     let temp = note.filter(item => item.id !== id)
     setNote(temp)
+    setCount(0)
   }
 
   const handleClear = (id) => {

@@ -6,7 +6,7 @@ import { db } from "../firebaseConfig"
 
 const Checkout = () => {
   const {  newPrice, note } = useContext(BuyContext)
-  const [loading, setLoading] = useState(true)
+  const [loading, setLoading] = useState(false)
 
   const handleCreateOrder = async () => {
    
@@ -44,23 +44,27 @@ const Checkout = () => {
 
     if(outOfStock.length === 0){
       await batch.commit()
-
       const orderRef = collection(db, 'orders')
-
       const orderAdded = await addDoc(orderRef, objOrder)
-
       console.log(orderAdded.id)
+
     } else {
       console.log('Hay productos fuera de stock')
     }
-  } catch(err){ console.log(err) }
+
+
+  } 
+  catch(err){ console.log(err) }
   finally{
-    setLoading(false)
+    setLoading(true)
+    
   }
 } 
-    if(loading) {
-    return <h1>Generando Orden...</h1>
-    }
+
+
+if(loading ) {
+  return <h1>Se ha generado su orden</h1>
+}
 
     return (
         <div>
