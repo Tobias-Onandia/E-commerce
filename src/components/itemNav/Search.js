@@ -10,7 +10,7 @@ const Search = () => {
   const handleChange = e => { 
     let value = e.target.value
     setNote(getNoteByCategory(value))
-  }
+    }
 
   const handleClick = () => {
     let input = note.category
