@@ -40,7 +40,7 @@ const Checkout = () => {
       }else {
         outOfStock.push({ id: doc.id, ...dataDoc})
       }
-    })
+    })    
 
     if(outOfStock.length === 0){
       await batch.commit()
@@ -63,12 +63,27 @@ const Checkout = () => {
 
 
 if(loading ) {
-  return <h1>Se ha generado su orden</h1>
+  return (
+  <>  
+   <button className="btn btn-wide">Se ha generado su orden</button>
+  </>
+  )
 }
 
     return (
-        <div>
-            <button onClick={handleCreateOrder}>Confirmar Orden</button>
+         <div>
+          <label htmlFor="my-modal" className="btn">Confirmar orden</label>
+          <input type="checkbox" id="my-modal" className="modal-toggle" />
+          <form className="modal">
+            <div className="modal-box flex flex-col ">
+          <h3>Es necesario iniciar sesion</h3>
+              <input type="email" className="font-bold text-lg m-lg " placeholder="email"/>
+              <input type="password" placeholder="password" className="py-4 m-lg" />
+              <div className="modal-action">
+                <label htmlFor="my-modal" className="btn" onClick={handleCreateOrder}>iniciar sesion</label>
+              </div>
+            </div>
+          </form>  
         </div>
         )
 }

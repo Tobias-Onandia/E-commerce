@@ -20,10 +20,24 @@ const ItemList = ()=>{
         const data = doc.data()
         return {id: doc.id , ...data }
       })
-      setProduct(notesAdapted.map(item => <Item key={item.id} description={item.description} title={item.name} url={item.url}/>))
+      setProduct(notesAdapted.map(item => <Item key={item.id} description={item.description} title={item.name} url={item.url} categoryComun={item.categoryComun}/>))
     })
     .catch(err => console.log(err))
     .finally(() => {setIsloading(false)})}  
+    else if( categoryId) {
+      const collectionRef = categoryId
+      ? query ( collection(db, 'home'), where('category', '==', categoryId), limit())
+      : query (collection(db,"home"), orderBy('name', 'desc'))
+    getDocs(collectionRef)
+      .then(response => { const notesAdapted = response.docs.map(doc => {
+        const data = doc.data()
+        return {id: doc.id , ...data }
+      })
+      setProduct(notesAdapted.map(item => <Item key={item.id} description={item.description} title={item.name} url={item.url} categoryComun={item.categoryComun}/>))
+    })
+    .catch(err => console.log(err))
+    .finally(() => {setIsloading(false)})
+      }
     else
     {
       const docRef = doc(db, 'home', categoryId)
@@ -31,7 +45,7 @@ const ItemList = ()=>{
       .then(doc => {
         const data = doc.data()
         const noteAdapted = {id: doc.id, ...data}
-        setProduct(<Item key={noteAdapted.id} description={noteAdapted.description} title={noteAdapted.name} url={noteAdapted.url} />)
+        setProduct(<Item key={noteAdapted.id} description={noteAdapted.description} title={noteAdapted.name} url={noteAdapted.url} categoryComun={noteAdapted.categoryComun}/>)
       })
       .catch(err => console.log(err))
       .finally(()=> setIsloading(false))

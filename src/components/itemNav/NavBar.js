@@ -16,7 +16,7 @@ const NavBar = () => {
 
   useEffect(() =>{ 
       const collectionRef = categoryId
-      ? query ( collection(db, 'home'), where('categoryComun', '==', categoryId), limit(1))
+      ? query (collection(db, 'home'), where('categoryComun', '==', categoryId), limit(1))
       : query (collection(db,"home"), orderBy('name', 'desc'))
     getDocs(collectionRef)
       .then(response => { 
@@ -41,8 +41,8 @@ const NavBar = () => {
       <section className="dropdown dropdown-end">
         <label tabIndex={0} className="btn m-1">Categorias</label>
           <ul tabIndex={0} className="dropdown-content menu p-xl shadow bg-base-100 rounded-box w-52">
-            <li className="mb-xl"><Link to={"/category/Prenda inferior"}>Prenda superior</Link></li>
-            <li><Link to={"category/pantalones"}>Prenda inferior</Link></li>
+            <li className="mb-xl"><Link to={`/category/superior`}>Prenda superior</Link></li>
+            <li><Link to={"/category/inferior"}>Prenda inferior</Link></li>
           </ul>
       </section>
       <CartWidget />

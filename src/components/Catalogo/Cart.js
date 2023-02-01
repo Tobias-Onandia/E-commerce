@@ -2,7 +2,7 @@ import { useContext } from "react"
 import { BuyContext } from "../context/cartContext"
 
 
- const Cart = ({ title , description, price, id, handleCreateOrder }) => {
+ const Cart = ({ title , description, price, id}) => {
  
   const { handleDelete } = useContext(BuyContext)
 

@@ -24,7 +24,7 @@ const CartList = () => {
       {newNote.map(item => <Cart key={item.id}  title={item.name} description={item.description} price={item.price} id={item.id} />)}
       <button onClick={()=> handleClear()} className="btn btn-primary mt-xl absolute right-xl">Limpiar</button>
      </main> 
-     <button className="btn btn-primary absolute bottom-xl right-lg"><Checkout/></button>
+    <Checkout/>
      
      
      </>
